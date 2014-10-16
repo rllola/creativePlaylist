@@ -1,23 +1,44 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div snap-drawer class="snap">
+  <div class="snap-container">
+    <div class="cut-out">
+      <span class="image-wrap " style="position:relative; display:inline-block; background:url(images/image-4.jpg) no-repeat center center; width: 150px; height: 150px;">
+          <img src="images/image-4.jpg" style="opacity: 0;"></img>
+      </span>
+      <br/>
+      <br/>
+      @Username
+    </div>
+    <div class="thumb-container">
+      <div class="col-xs-6 left">
+        <img src='images/test/alt-j_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
+        <img src='images/test/cezaire_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
+        <img src='images/test/chinese_man_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>  
+        <img src='images/test/deluxe_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>  
+        <img src='images/test/flight_facilities_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/> 
+        <img src='images/test/miami_horror_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>       
+      </div>
+      <div class="col-xs-6 right">
+        <img src='images/test/c2c_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
+        <img src='images/test/san_cisco_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
+        <img src='images/test/shook_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>  
+        <img src='images/test/wekeed_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
+        <img src='images/test/fritz_kalkbrenner_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>  
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+<div snap-content class="main">
+  <div class="row vertical-center" >
+    <span snap-toggle="left"><</span>
+    <div class="wrapper" ng-hide="true" >
+      Creative Playlist
+    </div>
+    <div class="empty">    </div>
+    <audio controls >
+      <source src="music/alt-J()/alt-J (∆) Breezeblocks.ogg" type="audio/ogg">
+      <source src="music/alt-J()/alt-J (∆) Breezeblocks.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 </div>

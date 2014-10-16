@@ -2,91 +2,178 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+@import "compass/css3";
+@import url(http://fonts.googleapis.com/css?family=Poiret+One);
+$dark-grey : #0F0F0F;
+$light-grey : #A6A6A6;
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+
+/* Initialisation */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-/* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  overflow: hidden;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+.ng-scope {
+  height: 100%;
+  width: 100%;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
+.row {
+  width: 100%;
+}
 
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+.main {
+  background : url(../images/background.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  @include single-box-shadow(-9px, 3px, 5px, 0px, rgba(0, 0, 0, 0.8));
+
+  .wrapper {
+    border-style: solid;
+    border-color: white;
+    padding: 2% 5%;
+    margin : auto;
+    color: white;
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    font-size: 30px;
+  }
+
+  .empty {
+    margin : auto;
+    text-align: center;
+  }
+
+  audio {
+  /* Align the bootstrap's container vertically */
+    position: absolute;
+    bottom: 0;
+    left : 0;
+    width: 100%;
+  }
+
+  /* The little arrow that toggle the snap-drawer */
+  span {
+    cursor: pointer;
+    margin-left: 20px;
+    font-size: 30px;
+    color: white;
   }
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+/* To verticaly center the wrapper really usefull */
+.vertical-center {
+  min-height: 100%;  /* Fallback for vh unit */
+  min-height: 100vh; /* You might also want to use
+                        'height' property instead.
+                        
+                        Note that for percentage values of
+                        'height' or 'min-height' properties,
+                        the 'height' of the parent element
+                        should be specified explicitly.
+  
+                        In this case the parent of '.vertical-center'
+                        is the <body> element */
+
+  /* Make it a flex container */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; 
+  
+  /* Align the bootstrap's container vertically */
+    -webkit-box-align : center;
+  -webkit-align-items : center;
+       -moz-box-align : center;
+       -ms-flex-align : center;
+          align-items : center;
+  
+  /* In legacy web browsers such as Firefox 9
+     we need to specify the width of the flex container */
+  width: 100%;
+  
+  /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+     hence the bootstrap's container won't be aligned to the center anymore.
+  
+     Therefore, we should use the following declarations to get it centered again */
+         -webkit-box-pack : center;
+            -moz-box-pack : center;
+            -ms-flex-pack : center;
+  -webkit-justify-content : center;
+          justify-content : center;
 }
 
-.container-narrow > hr {
-  margin: 30px 0;
-}
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+.snap {
+  background-color: $dark-grey;
+  color: $light-grey;
 
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+  .snap-container {
+    width: 300px;
+    text-align: center;
+
+    .thumb-container {
+      margin-top: 50px;
+      width: 100%;
+      text-align: left;
+
+      .col-xs-6 {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .left img {
+        padding-left: 5px;
+      }
+
+      .right img {
+        padding-right: 5px;
+      }
+
+      img {
+        /*margin:0px 0px 1px 1px;*/
+        cursor: pointer;
+      }
+
+    }
+
+    .cut-out img {
+      @include border-radius(50%, 50%);
+    }
   }
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
 
-  p + h4 {
-    margin-top: 28px;
-  }
+/* From http://webdesignerwall.com/tutorials/css3-image-styles */
+
+.cut-out .image-wrap {
+  margin-top : 50px;
+
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.2), inset 0 4px 5px rgba(0,0,0,.6), inset 0 1px 0 rgba(0,0,0,.6);
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,.2), inset 0 4px 5px rgba(0,0,0,.6), inset 0 1px 0 rgba(0,0,0,.6);
+  box-shadow: 0 1px 0 rgba(255,255,255,.2), inset 0 4px 5px rgba(0,0,0,.6), inset 0 1px 0 rgba(0,0,0,.6);
+      
+  @include border-radius(50%, 50%);
 }
+
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
+@media screen and (min-width: 716px) {
+  .main {
+    .wrapper {
+      font-size: 100px;
+    }
+    span {
+      font-size: 100px;
+    }
   }
 }
+
+

@@ -1,9 +1,12 @@
-from tastypie.resources import ModelResource
-from tastypie.authorization import Authorization
+from tastypie.resources import ModelResource, Resource
+#from tastypie.authorization import Authorization
+#Changing for bitAuth
+from tastypie.authentication import ApiKeyAuthentication
 from tastypie import fields
 from tastypie.constants import ALL
 from restApi.models import Artist, Art, Song
 from django.contrib.auth.models import User
+from tastybitauth.authentication import BitAuthAuthentication
 
 class MultipartResource(object):
     def deserialize(self, request, data, format=None):
@@ -25,17 +28,18 @@ class UserResource(MultipartResource, ModelResource):
 	class Meta:
 		queryset = User.objects.all()
 		resource_name = 'user'
-		#TODO : Unsecure get ride of this after testing
-		authorization= Authorization()
-		filtering = { "username" : ALL }
+        excludes = ['id', 'email']
+        authentication = BitAuthAuthentication()
 
 class ArtistResource(MultipartResource, ModelResource):
 	class Meta:
 		queryset = Artist.objects.all()
 		resource_name = 'artist'
-		#TODO : Unsecure get ride of this after testing
-		authorization= Authorization()
-		filtering = { "artistName" : ALL }
+        #TODO : Change for bitAuth
+        #authentication = ApiKeyAuthentication()
+        #authorization = Authorization()
+        excludes = ['id']
+        filtering = { "artistName" : ALL }
 
 class ArtResource(MultipartResource, ModelResource):
     artImage = fields.FileField(attribute="artImage", null=True, blank=True)
@@ -43,14 +47,21 @@ class ArtResource(MultipartResource, ModelResource):
     class Meta:
         queryset = Art.objects.all()
         resource_name = 'art'
-        authorization = Authorization()
+        excludes = ['id']
+        #TODO : Change for bitAuth
+        #authentication = ApiKeyAuthentication()
+        #authorization = Authorization()
 
 class SongResource(MultipartResource, ModelResource):
     songFile = fields.FileField(attribute="songFile", null=True, blank=True)
-    artist = fields.ForeignKey(ArtistResource, 'artist')
-    art = fields.ForeignKey(ArtResource, 'art')
-    user = fields.ForeignKey(UserResource, 'submitedByUser')
+    artist = fields.ForeignKey(ArtistResource, 'artist', full=True)
+    art = fields.ForeignKey(ArtResource, 'art', full=True)
+    user = fields.ForeignKey(UserResource, 'submitedByUser', full=True)
     class Meta:
         queryset = Song.objects.all()
         resource_name = 'song'
-        authorization = Authorization()
+        excludes = ['id']
+        #TODO : Change for bitAuth
+        authentication = BitAuthAuthentication()
+        #authorization = Authorization()
+        

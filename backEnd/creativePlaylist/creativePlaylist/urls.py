@@ -4,11 +4,14 @@ from tastypie.api import Api
 from django.conf import settings
 from api import ArtistResource, UserResource, ArtResource, SongResource
 
+admin.autodiscover()
+
 v1_api = Api(api_name='v1')
 v1_api.register(UserResource())
 v1_api.register(ArtistResource())
 v1_api.register(ArtResource())
 v1_api.register(SongResource())
+
 
 
 urlpatterns = patterns('',
@@ -18,6 +21,7 @@ urlpatterns = patterns('',
 	url(r'^api/', include(v1_api.urls)),
 	#url(r'^media/<imageFile>, )
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^oauth2/', include('provider.oauth2.urls', namespace = 'oauth2')),
 )
 
 if settings.DEBUG:

@@ -119,6 +119,18 @@ body {
     width: 300px;
     text-align: center;
 
+    #signin {
+      margin  : 50px 20px;
+
+      input {
+        margin-bottom: 10px;
+      }
+    }
+
+    button {
+      margin-top: 50px;
+    }
+
     .thumb-container {
       margin-top: 50px;
       width: 100%;
@@ -127,14 +139,44 @@ body {
       .col-xs-6 {
         padding-left: 0;
         padding-right: 0;
+
+        .caption {
+          background-color : black;
+          color : white;
+          filter: alpha(opacity=70);  /* This works in IE 8 & 9 too */
+          -moz-opacity:0.7; /* Older than Firefox 0.9 */
+          -khtml-opacity: 0.7;  /* Safari 1.x (pre WebKit!) */
+          opacity: 0.7; /* Firefox 0.9+, Safari 2?, Chrome any? Opera 9+, IE 9+ */
+          position : absolute;
+          bottom : 0;
+          left : 0;
+          height : 70px;
+          display : block;
+          width : 145px; /* TODO : change to 150px and responsive;*/
+        }
+
+        a {
+          display: block;
+        }
+
       }
 
-      .left img {
+      .left {
         padding-left: 5px;
+
+        .caption {
+          margin-left: 5px;
+          padding-left: 5px;
+        }
       }
 
-      .right img {
+      .right {
         padding-right: 5px;
+
+        .caption {
+          margin-right: 5px;
+          padding-right: 5px;
+        }
       }
 
       img {
@@ -163,6 +205,19 @@ body {
   @include border-radius(50%, 50%);
 }
 
+.animate-enter, .animate-leave {
+  transition: 1s ease-in all;
+  position: relative;
+  display: block;
+}
+
+.animate-enter.animate-enter-active, .animate-leave {
+  height: 0;
+}
+
+.animate-leave.animate-leave-active, .animate-enter {
+  height: 70px;
+}
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 716px) {

@@ -16,9 +16,14 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'snap'
+    'snap',
+    'ui.bootstrap',
+    'ngDialog',
+    'LocalStorageModule'
   ])
-  .config(function ($routeProvider, snapRemoteProvider) {
+  .config(function ($routeProvider, snapRemoteProvider, localStorageServiceProvider) {
+
+    localStorageServiceProvider.setPrefix('ls');
 
     /*Option pour snap.js */
     snapRemoteProvider.globalOptions = {

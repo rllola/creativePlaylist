@@ -1,4 +1,4 @@
-<div snap-drawer class="snap">
+<div snap-drawer class="snap" ng-if="sin">
   <div class="snap-container">
     <div class="cut-out">
       <span class="image-wrap " style="position:relative; display:inline-block; background:url(images/image-4.jpg) no-repeat center center; width: 150px; height: 150px;">
@@ -10,33 +10,56 @@
     </div>
     <div class="thumb-container">
       <div class="col-xs-6 left">
-        <img src='images/test/alt-j_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
+        <!--<img src='images/test/alt-j_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
         <img src='images/test/cezaire_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
         <img src='images/test/chinese_man_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>  
         <img src='images/test/deluxe_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>  
         <img src='images/test/flight_facilities_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/> 
-        <img src='images/test/miami_horror_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>       
+        <img src='images/test/miami_horror_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>-->
+        <a ng-repeat="song in songs track by index" >
+          <img src="http://0.0.0.0:8000{{ song.art.artThumb }}" title="{{ song.artist.artistName }}" alt="{{ song.artist.artistName }}" class='thumb'/>
+          <div class="caption">{{ song.artist.artistName }} <br/> {{ song.title }}</div>
+        </a>         
       </div>
       <div class="col-xs-6 right">
-        <img src='images/test/c2c_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
+        <!--<img src='images/test/c2c_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
         <img src='images/test/san_cisco_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
         <img src='images/test/shook_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>  
         <img src='images/test/wekeed_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>
-        <img src='images/test/fritz_kalkbrenner_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/>  
+        <img src='images/test/fritz_kalkbrenner_thumb.jpg' title='Alt-j' alt='Alt-j' class='thumb'/> --> 
       </div>
     </div>
   </div>
 </div>
 
+<div snap-drawer class="snap" ng-if="!sin">
+  <div class="snap-container">
+    <div class="cut-out">
+      <span class="image-wrap " style="position:relative; display:inline-block; background:url(images/image-4.jpg) no-repeat center center; width: 150px; height: 150px;">
+          <img src="images/image-4.jpg" style="opacity: 0;"></img>
+      </span>
+    </div>
+    <form id="signin" role="form">
+      <div class="form-group">
+        <!--<input type="text" ng-model="username" class="form-control" id="username" placeholder="Username">-->
+        <!-- TODO : Replace Sin by Mnemonic  -->
+        <input type="text" ng-model="inputSin" class="form-control" id="mnemonic" placeholder="Sin">
+      </div>
+      <button type="button" class="btn btn-default" ng-click="login(inputSin)">Submit</button>
+    </form>
+    <center>Or</center>
+    <button type="button" class="btn btn-default" ng-click="openDialog()">Sign in with card</button>
+  </div>
+</div> 
+
 <div snap-content class="main">
   <div class="row vertical-center" >
     <span snap-toggle="left"><</span>
-    <div class="wrapper" ng-hide="true" >
+    <div class="wrapper"  >
       Creative Playlist
     </div>
-    <div class="empty">    </div>
-    <audio controls >
-      <source src="music/alt-J()/alt-J (∆) Breezeblocks.ogg" type="audio/ogg">
+    <div class="empty" ng-hide="true">    </div>
+    <audio controls ng-hide="true">
       <source src="music/alt-J()/alt-J (∆) Breezeblocks.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>

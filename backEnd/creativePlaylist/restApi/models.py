@@ -1,8 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tastypie.models import create_api_key
 
 
 # Create your models here.
+
+
+
 class Artist(models.Model):
 	"""docstring for Artist"""
 	artistName = models.CharField(max_length=255)
@@ -23,8 +27,8 @@ class Song(models.Model):
 	#TODO : Addin default value (user : request.User)
 	title = models.CharField(max_length=255)
 	songFile = models.FileField(upload_to='media/music')
-	artist = models.ForeignKey(Artist)
-	art = models.ForeignKey(Art)
+	artist = models.ForeignKey(Artist, related_name='artist')
+	art = models.ForeignKey(Art, related_name='art')
 	submitedByUser = models.ForeignKey(User, null=True)
 
 	def __init__(self, *args, **kwargs):

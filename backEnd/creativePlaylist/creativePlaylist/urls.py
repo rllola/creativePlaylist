@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from tastypie.api import Api
 from django.conf import settings
-from api import ArtistResource, UserResource, ArtResource, SongResource
+from api import ArtistResource, UserResource, ArtResource, SongResource, LoginUserResource
 
 admin.autodiscover()
 
@@ -11,6 +11,7 @@ v1_api.register(UserResource())
 v1_api.register(ArtistResource())
 v1_api.register(ArtResource())
 v1_api.register(SongResource())
+v1_api.register(LoginUserResource())
 
 
 

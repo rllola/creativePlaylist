@@ -16,6 +16,7 @@ var app = express();
 
 app.get('/getsin', function(req, res) {
         // Get the SIN from the public key
+      console.log('getsin end point');
       var sin = bitauth.getSinFromPublicKey(req.query.pubkey);
       if(!sin){
           res.send(400, {error: 'Bad public key from identity'});
@@ -28,7 +29,7 @@ app.get('/getsin', function(req, res) {
 
 app.get('/verifysignature', function(req, res) {
     console.log(req.query.data)
-
+    console.log('verifysignature end point');
     bitauth.verifySignature(req.query.data, req.query.pubkey, req.query.signature, function(err, result) {
       if(err || !result) {
         return res.send(400, {error: 'Invalid signature'});

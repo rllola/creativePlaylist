@@ -26,7 +26,7 @@ class Song(models.Model):
 	"""docstring for Song"""
 	#TODO : Addin default value (user : request.User)
 	title = models.CharField(max_length=255)
-	songFile = models.FileField(upload_to='media/music')
+	songFile = models.FileField(upload_to='music')
 	artist = models.ForeignKey(Artist, related_name='artist')
 	art = models.ForeignKey(Art, related_name='art')
 	submitedByUser = models.ForeignKey(User, null=True)

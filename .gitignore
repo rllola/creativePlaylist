@@ -4,6 +4,8 @@
 .vagrant
 *.sqlite3
 .coverage
+*.mp3
+*.ogg
 creativePlaylist/static/css/*.css
 dist/
 node_modules/

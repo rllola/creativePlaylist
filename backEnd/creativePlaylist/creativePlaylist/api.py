@@ -5,7 +5,7 @@ from tastypie.authorization import Authorization
 #from tastypie.authentication import ApiKeyAuthentication
 from tastypie import fields
 from tastypie.constants import ALL
-from restApi.models import Artist, Art, Song
+from restApi.models import Artist, Art, Song, Address
 from django.contrib.auth.models import User
 from tastybitauth.authentication import BitAuthAuthentication
 from tastypie.exceptions import Unauthorized
@@ -33,7 +33,6 @@ class UserResource(MultipartResource, ModelResource):
         print authentication
         resource_name = 'user'
         fields = ['username']
-
 
 class LoginUserResource(MultipartResource, ModelResource):
     class Meta:

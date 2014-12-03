@@ -1,11 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from tastypie.models import create_api_key
+from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
-
-
+class Adress(models.Model):
+	"""docstring for Adress"""
+	user = models.OneToOneField(User, null=True)
+	address = models.TextField()
 
 class Artist(models.Model):
 	"""docstring for Artist"""

@@ -24,6 +24,7 @@ body {
 	font-weight: 400;
 	font-size: 1em;
 	background: #35b88f url(../img/banner.svg) bottom center no-repeat;
+	background-size: cover;
 	font-family: 'Raleway', Arial, sans-serif;
 	overflow: hidden;
 	overflow-y: scroll;

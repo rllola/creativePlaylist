@@ -5,7 +5,7 @@ from tastypie.authorization import Authorization
 #from tastypie.authentication import ApiKeyAuthentication
 from tastypie import fields
 from tastypie.constants import ALL
-from restApi.models import Artist, Art, Song, Address
+from restApi.models import Artist, Art, Song
 from django.contrib.auth.models import User
 from tastybitauth.authentication import BitAuthAuthentication
 from tastypie.exceptions import Unauthorized
@@ -24,13 +24,13 @@ class MultipartResource(object):
 
             return data
 
-        return super(MultipartResource, self).deserialize(request, data, format)
+        return super(MultipartResource, self).deserialize(request, data, format)  
 
 class UserResource(MultipartResource, ModelResource):
     class Meta:
         queryset = User.objects.all()
         authentication = BitAuthAuthentication()
-        print authentication
+        authorization = Authorization()
         resource_name = 'user'
         fields = ['username']
 
@@ -67,7 +67,8 @@ class ArtistResource(MultipartResource, ModelResource):
     class Meta:
         queryset = Artist.objects.all()
         resource_name = 'artist'
-        authentication = BitAuthAuthentication()
+        #authentication = BitAuthAuthentication()
+        authorization = Authorization()
         fields = ['artistName']
 
 
@@ -77,8 +78,8 @@ class ArtResource(MultipartResource, ModelResource):
     class Meta:
         queryset = Art.objects.all()
         resource_name = 'art'
-        excludes = ['id', 'artImage']
-        authentication = BitAuthAuthentication()
+        authorization = Authorization()
+        #authentication = BitAuthAuthentication()
 
 
 class SongResource(MultipartResource, ModelResource):
@@ -87,8 +88,8 @@ class SongResource(MultipartResource, ModelResource):
     art = fields.ForeignKey(ArtResource, 'art', full=True)
     user = fields.ForeignKey(UserResource, 'submitedByUser', full=True)
     class Meta:
+        authorization = Authorization()
         queryset = Song.objects.all()
         resource_name = 'song'
-        excludes = ['id']
-        authentication = BitAuthAuthentication()
+        #authentication = BitAuthAuthentication()
         

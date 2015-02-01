@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'restApi',
     'tastypie',
     'tastybitauth',
+    'tastypie_swagger',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,6 +53,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+TASTYPIE_SWAGGER_API_MODULE = 'creativePlaylist.api'
 
 CORS_ORIGIN_ALLOW_ALL = True
 

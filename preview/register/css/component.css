@@ -1,4 +1,4 @@
-/* Main form wrapper */
+﻿/* Main form wrapper */
 .fs-form-wrap {
 	position: relative;
 	width: 100%;
@@ -267,9 +267,10 @@ button.fs-continue,
 	background-repeat: no-repeat;
 }
 
-.fs-fields input:focus {
-	background-color: #3b3f45; /* Fixes chrome bug with placeholder */
-}
+/* Fixes chrome bug with placeholder */
+/*.fs-fields input:focus {
+	background-color: #3b3f45; 
+}*/
 
 .fs-form-overview .fs-fields input:focus {
 	background-color: #fffed8; /* Fixes chrome bug with placeholder */

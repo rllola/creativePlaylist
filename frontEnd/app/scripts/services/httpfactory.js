@@ -12,7 +12,7 @@ angular.module('creativePlaylistApp')
 
     var HttpFactory = {};
     var bitAuth = window.bitauth;
-    var urlBase = 'http://0.0.0.0:8000/api/v1/'
+    var urlBase = 'http://192.168.1.111:8000/api/v1/'
 
     HttpFactory.connection = function(sin, service) {
       var url = urlBase + service + '/?format=json';
@@ -24,8 +24,8 @@ angular.module('creativePlaylistApp')
           }
       };
 
-      /*console.log(options.headers);
-      console.log(bitAuth.getSinFromPublicKey(options.headers['x-identity']));*/
+      console.log(options.headers);
+      /*console.log(bitAuth.getSinFromPublicKey(options.headers['x-identity']));*/
 
       $http.defaults.headers.common['x-identity'] = options.headers['x-identity'];
       $http.defaults.headers.common['x-signature'] = options.headers['x-signature'];

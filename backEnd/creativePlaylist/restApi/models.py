@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from tastypie.models import create_api_key
+#from tastypie.models import create_api_key
 from django.contrib.auth.models import AbstractUser
 
 

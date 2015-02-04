@@ -7,22 +7,35 @@
  * # player
  */
 angular.module('creativePlaylistApp')
-  .directive('player', function () {
+  .directive('player', function ($sce, $rootScope) {
     return {
-      template: '<audio controls>Your browser does not support the audio element.</audio>',
-      song: '=song',
-      restrict: 'E',
+      template: '<audio id="audio" autoplay controls ></audio>',
+      restrict: 'EA',
       scope : {
-      	song: '=song'
+      	song: '=song',
+      	songs: '=songs'
       },
-      link: function postLink(scope, element, attrs) {
-        //element.text('this is the player directive');
+      link: function(scope, element, attrs) {
+      	//var audio = new Audio();
+      	var audio = document.getElementById('audio');
+
         scope.$watch('song', function(value){
+        	console.log(value);
         	if(value){
-            	console.log(value);
-                console.log(element[0]);
+            	audio.src = $sce.trustAsResourceUrl('http://192.168.1.111:8000' + value.songFile);
+		    	$(".main").css({
+		        	'background-image': 'url(http://192.168.1.111:8000' + value.art.artImage +')'
+		      	});
+		      	audio.load();
+		      	audio.play();
             }
+            console.log(scope.song);
         });
+
+        /* Ugly need to change it */
+    	audio.addEventListener('ended', function(){ 
+    		$rootScope.$broadcast('nextSong');
+      	});
       }
     };
   });

@@ -8,7 +8,7 @@
  * Controller of the creativePlaylistApp
  */
 angular.module('creativePlaylistApp')
-  .controller('QrScannerCtrl', function ($scope) {
+  .controller('QrScannerCtrl', function ($scope, $rootScope) {
 
   	console.log('Qrscanner controller')
 
@@ -17,20 +17,25 @@ angular.module('creativePlaylistApp')
   	 */
     $scope.onSuccess = function(data) {
 		  console.log(data);
+      var login = {
+                    user : 'lola',
+                    key : data
+                  };
+      $rootScope.$emit('successScan', login);
 	  };
 
   	/*
   	 *	Fail of the QrCode reading
   	 */
-	$scope.onError = function(error) {
-		console.log(error);
-	};
+  	$scope.onError = function(error) {
+  		console.log(error);
+  	};
 
   	/*
   	 *	Video error function
   	 */
-	$scope.onVideoError = function(error) {
-		console.log(error);
-	};
+  	$scope.onVideoError = function(error) {
+  		console.log(error);
+  	};
 
   });

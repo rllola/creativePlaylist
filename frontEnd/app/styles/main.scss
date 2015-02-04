@@ -49,12 +49,12 @@ body {
     text-align: center;
   }
 
-  player {
-  /* Align the bootstrap's container vertically */
-    /*position: absolute;
-    bottom: 0;
-    left : 0;*/
+  #player {
     margin : auto;
+    width: 50%;
+    audio {
+      width: 100%;
+    }
   }
 
   /* The little arrow that toggle the snap-drawer */
@@ -136,7 +136,7 @@ body {
       width: 100%;
       text-align: left;
 
-      .col-xs-6 {
+      .col-xs-12 {
         padding-left: 0;
         padding-right: 0;
 
@@ -161,7 +161,7 @@ body {
           position: relative;
           float: left;
           overflow: hidden;
-          margin: 0px 2px;
+          margin: 0px 0px;
           min-width: 145px;
           max-width: 145px;
           max-height: 91px;
@@ -217,24 +217,6 @@ body {
 
         }
 
-      }
-
-      .left {
-        padding-left: 5px;
-
-        .caption {
-          margin-left: 5px;
-          padding-left: 5px;
-        }
-      }
-
-      .right {
-        padding-right: 5px;
-
-        .caption {
-          margin-right: 5px;
-          padding-right: 5px;
-        }
       }
 
       img {

@@ -8,8 +8,8 @@
  * Controller of the creativePlaylistApp
  */
 angular.module('creativePlaylistApp')
-  .controller('MainCtrl', [ '$http', '$scope', '$sce', 'ngDialog', 'HttpFactory', 'localStorageService' ,
-    function ($http, $scope, $sce, ngDialog, HttpFactory, localStorageService) {
+  .controller('MainCtrl', [ '$http', '$scope', '$sce', '$rootScope', 'ngDialog', 'HttpFactory', 'localStorageService' ,
+    function ($http, $scope, $sce, $rootScope, ngDialog, HttpFactory, localStorageService) {
 
   	console.log('MainCtrl');
 
@@ -29,31 +29,39 @@ angular.module('creativePlaylistApp')
 
     /*
      * Login function : return the username and the id 
+     * lola : 8babdc5ed9aebf3ba19b5fada61f2949fd2c72173982c68fbcb94c04da76b188
      */
     $scope.login = function(inputSin, username) {
 
+
       $scope.user = {};
 
-      console.log(inputSin);
+      //console.log(inputSin);
 
       $scope.user.sin = inputSin;
       var service = 'login/'+username;
 
-      console.log($scope.user.sin);
+      //console.log($scope.user.sin);
 
       var response = HttpFactory.connection($scope.user.sin,service);
 
-      console.log(response);
+      //console.log(response);
 
       response.success(function(data, status, headers) {
         $scope.user.username = data.username;
         $scope.user.id = data.id;
         localStorageService.add('user', $scope.user);
       }).error(function(data, status, headers) {
-        console.log(status);
+        //console.log(status);
         $scope.user = null;
       });
     };
+
+    $rootScope.$on('successScan', function(event, data) {
+      //console.log(data);
+      ngDialog.close();
+      $scope.login(data.key, data.user);
+    });
 
     $scope.loadSong = function() {
 
@@ -65,21 +73,37 @@ angular.module('creativePlaylistApp')
         $scope.songs = data.objects;
         //$scope.selectedSong = $sce.trustAsResourceUrl('http://0.0.0.0:8000' + $scope.songs[0].songFile);
       }).error(function(data, status, headers) {
-        console.log(status);
+        //console.log(status);
       });
     };
 
     $scope.selectSong = function(song) {
-      console.log(" selectedSong : " + song.songFile);
-      $scope.selectedSong = null;
-      $scope.selectedSong = $sce.trustAsResourceUrl('http://0.0.0.0:8000' + song.songFile);
+      console.log('selectSong');
       console.log($scope.selectedSong);
+      $scope.selectedSong = song;
     };
 
-    if (localStorageService.get('sin')) {
+    $scope.$on('nextSong', function() {
+      for (var i = 0; i < $scope.songs.length; i++) {
+        if ($scope.selectedSong.id === $scope.songs[i].id) {
+          if ($scope.songs[i+1]) {
+                  //console.log(scope.songs[i+1]);
+                  $scope.selectedSong = $scope.songs[i+1];
+                  $scope.$apply();
+                  break;
+          } else {
+                  //console.log(scope.songs[0])
+                  $scope.selectedSong = $scope.songs[0];
+                  $scope.$apply();
+                  break;
+          }
+        }
+      }
+    });
+    
+    if (localStorageService.get('user')) {
       $scope.user = localStorageService.get('user');
       $scope.login($scope.user.sin, $scope.user.username);
-      //console.log($scope.sin);
     } else {
       $scope.user = null;
     };

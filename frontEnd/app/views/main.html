@@ -9,21 +9,14 @@
       @{{ user.username }}
     </div>
     <div class="thumb-container">
-      <div class="col-xs-6 left">
-        <!--<a ng-repeat="song in songs track by $index | filter:$index%2==0" ng-click="selectSong(song)">
-          <img src="http://0.0.0.0:8000{{ song.art.artThumb }}" title="{{ song.artist.artistName }}" alt="{{ song.artist.artistName }}" class='thumb'/>
-          <div class="caption">{{ song.artist.artistName }} <br/> {{ song.title }}</div>
-        </a>-->
+      <div class="col-xs-12">
         <figure ng-repeat="song in songs" class="effect-sadie">
-          <img src="http://0.0.0.0:8000{{ song.art.artThumb }}" title="{{ song.artist.artistName }}" alt="{{ song.artist.artistName }}"/>
+          <img src="http://192.168.1.111:8000{{ song.art.artThumb }}" title="{{ song.artist.artistName }}" alt="{{ song.artist.artistName }}"/>
           <figcaption>
-            <!--<h2>Holy <span>Sadie</span></h2>-->
             <p>{{ song.artist.artistName }} <br>{{ song.title }}</p>
             <a href="" ng-click="selectSong(song)" >View more</a>
           </figcaption>
         </figure>
-      </div>
-      <div class="col-xs-6 right">
       </div>
     </div>
   </div>
@@ -55,11 +48,6 @@
       <div ng-if="!selectedSong" class="wrapper">
         Creative Playlist
       </div>
-      <player ng-if="selectedSong" song="selectedSong"></player>
-    <!--<div class="empty">    </div>
-    <audio controls>
-      <source src="music/alt-J()/alt-J (∆) Breezeblocks.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>-->
+     <player id="player" ng-if="selectedSong" song="selectedSong" songs="songs"></player>
   </div>
 </div>

@@ -20,8 +20,8 @@ angular.module('creativePlaylistApp')
       window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     
-      var height = attrs.height || 300;
-      var width = attrs.width || 250;
+      var height = attrs.height || 400;
+      var width = attrs.width || 350;
       var localMediaStream;
     
       var video = document.createElement('video');
@@ -46,15 +46,17 @@ angular.module('creativePlaylistApp')
             scope.ngError({error: e});
           }
         }
-        $timeout(scan, 500);
+        $timeout(scan, 200);
       }
 
       var successCallback = function(stream) {
+        console.log('successCallback');  
         video.src = (window.URL && window.URL.createObjectURL(stream)) || stream;
         localMediaStream = stream;
 
         video.play();
-        $timeout(scan, 1000);
+        //$timeout(scan, 1000);
+        scan();
       }
 
       // Call the getUserMedia method with our callback functions
@@ -67,6 +69,9 @@ angular.module('creativePlaylistApp')
       }
 
       qrcode.callback = function(data) {
+        localMediaStream.stop();
+        localMediaStream = null;
+        console.log('Houston, on a marché sur la lune.');
         scope.ngSuccess({data: data});
       };
     }

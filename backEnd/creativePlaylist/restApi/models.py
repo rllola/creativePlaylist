@@ -5,11 +5,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
-class Adress(models.Model):
-	"""docstring for Adress"""
-	user = models.OneToOneField(User, null=True)
-	address = models.TextField()
-
 class Artist(models.Model):
 	"""docstring for Artist"""
 	artistName = models.CharField(max_length=255)

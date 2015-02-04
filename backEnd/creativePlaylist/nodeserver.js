@@ -20,8 +20,10 @@ app.get('/getsin', function(req, res) {
       var sin = bitauth.getSinFromPublicKey(req.query.pubkey);
       if(!sin){
           res.send(400, {error: 'Bad public key from identity'});
+          //res.status(400).send({error: 'Bad public key from identity'})
        }else{
           res.send(200, sin)
+          //res.status(200).send(sin)
        }
 
 });
@@ -30,11 +32,14 @@ app.get('/getsin', function(req, res) {
 app.get('/verifysignature', function(req, res) {
     console.log(req.query.data)
     console.log('verifysignature end point');
+    console.log(req.query.pubkey, req.query.signature);
     bitauth.verifySignature(req.query.data, req.query.pubkey, req.query.signature, function(err, result) {
       if(err || !result) {
+        console.log("Ca passe pas");
         return res.send(400, {error: 'Invalid signature'});
       }else{
       //all good
+        console.log("Ca passe");
         return res.send(200, "True")
       }
     });

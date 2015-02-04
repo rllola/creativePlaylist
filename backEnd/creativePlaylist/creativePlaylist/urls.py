@@ -15,6 +15,7 @@ v1_api.register(LoginUserResource())
 
 
 
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'creativePlaylist.views.home', name='home'),
@@ -22,7 +23,8 @@ urlpatterns = patterns('',
 	url(r'^api/', include(v1_api.urls)),
 	#url(r'^media/<imageFile>, )
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^oauth2/', include('provider.oauth2.urls', namespace = 'oauth2')),
+    #url(r'^oauth2/', include('provider.oauth2.urls', namespace = 'oauth2')),
+    url(r'api/doc/', include('tastypie_swagger.urls', namespace='tastypie_swagger')),
 )
 
 if settings.DEBUG:
